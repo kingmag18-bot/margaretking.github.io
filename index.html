@@ -1,0 +1,1642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Margaret King | Fintech Executive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #14100c;
+    --paper: #f7f3ec;
+    --gold: #c8821e;
+    --gold-light: #dda040;
+    --slate: #261e16;
+    --mist: #a09278;
+    --rule: rgba(196,135,42,0.28);
+    --glass: rgba(247,243,236,0.04);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'Instrument Sans', sans-serif;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom cursor */
+  .cursor {
+    position: fixed;
+    width: 8px; height: 8px;
+    background: var(--gold);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.15s ease;
+    transform: translate(-50%, -50%);
+  }
+  .cursor-ring {
+    position: fixed;
+    width: 32px; height: 32px;
+    border: 1px solid rgba(184,146,42,0.5);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transition: transform 0.4s ease, width 0.3s, height 0.3s, opacity 0.3s;
+    transform: translate(-50%, -50%);
+  }
+  body:hover .cursor-ring { opacity: 1; }
+
+  /* Noise overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.35;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 3rem;
+    border-bottom: 1px solid rgba(184,146,42,0.12);
+    backdrop-filter: blur(12px);
+    background: rgba(10,10,15,0.75);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mist);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 8rem 4rem 6rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2rem;
+    animation: fadeUp 0.8s ease 0.2s both;
+  }
+
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 6vw, 7rem);
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    color: var(--paper);
+    margin-bottom: 0.5rem;
+    animation: fadeUp 0.9s ease 0.35s both;
+  }
+  .hero-name em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--mist);
+    margin-top: 1.5rem;
+    margin-bottom: 3rem;
+    animation: fadeUp 0.9s ease 0.5s both;
+    line-height: 1.5;
+    max-width: 480px;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    animation: fadeUp 0.9s ease 0.65s both;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--ink);
+    padding: 0.9rem 2.2rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s;
+    cursor: none;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+  .btn-ghost {
+    color: var(--mist);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 0.2rem;
+    transition: all 0.3s;
+    cursor: none;
+  }
+  .btn-ghost:hover { color: var(--paper); border-color: var(--paper); }
+
+  /* Hero right — abstract financial graphic */
+  .hero-right {
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-right::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(184,146,42,0.06) 0%, transparent 60%);
+  }
+
+  .chart-canvas {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hex-grid {
+    position: absolute;
+    inset: 0;
+    opacity: 0.07;
+    background-image:
+      repeating-linear-gradient(60deg, var(--gold) 0, var(--gold) 1px, transparent 0, transparent 50%),
+      repeating-linear-gradient(120deg, var(--gold) 0, var(--gold) 1px, transparent 0, transparent 50%),
+      repeating-linear-gradient(180deg, var(--gold) 0, var(--gold) 1px, transparent 0, transparent 50%);
+    background-size: 40px 70px;
+  }
+
+  .data-viz {
+    position: relative;
+    z-index: 2;
+    width: 380px;
+    animation: fadeIn 1.2s ease 0.8s both;
+  }
+
+  /* Animated SVG chart lines */
+  .line-chart-path {
+    stroke-dasharray: 600;
+    stroke-dashoffset: 600;
+    animation: drawLine 2s ease 1s forwards;
+  }
+  .line-chart-path-2 {
+    stroke-dasharray: 500;
+    stroke-dashoffset: 500;
+    animation: drawLine 2.2s ease 1.2s forwards;
+  }
+
+  .hero-stat-cards {
+    position: absolute;
+    right: 3rem;
+    bottom: 6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    animation: fadeUp 0.9s ease 1s both;
+  }
+
+  .stat-card {
+    background: rgba(245,242,236,0.04);
+    border: 1px solid rgba(184,146,42,0.2);
+    padding: 1.2rem 1.8rem;
+    backdrop-filter: blur(8px);
+    min-width: 200px;
+  }
+  .stat-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mist);
+    margin-top: 0.4rem;
+  }
+
+  /* Scrolling ticker */
+  .ticker {
+    position: absolute;
+    bottom: 0;
+    left: 0; right: 0;
+    border-top: 1px solid var(--rule);
+    padding: 0.8rem 0;
+    overflow: hidden;
+    background: rgba(10,10,15,0.6);
+    backdrop-filter: blur(8px);
+  }
+  .ticker-inner {
+    display: flex;
+    gap: 4rem;
+    animation: ticker 30s linear infinite;
+    white-space: nowrap;
+  }
+  .ticker-item {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 300;
+    letter-spacing: 0.12em;
+    color: var(--mist);
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+  .ticker-item .up { color: #4ade80; }
+  .ticker-item .down { color: #f87171; }
+  .ticker-sep { color: var(--rule); margin: 0 0.5rem; }
+
+  /* ─── SECTION BASE ─── */
+  section {
+    padding: 7rem 0;
+    position: relative;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 3rem;
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--paper);
+    margin-bottom: 3rem;
+  }
+  .section-title em { font-style: italic; color: var(--gold); }
+
+  /* ─── PHOTO ─── */
+  .photo-frame {
+    position: relative;
+    width: 280px;
+    height: 280px;
+    flex-shrink: 0;
+    margin: 0 auto 2.5rem;
+  }
+  .photo-frame::before {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border: 1px solid rgba(184,146,42,0.5);
+    border-radius: 50%;
+    animation: pulse 3s ease-in-out infinite;
+  }
+  .photo-frame::after {
+    content: '';
+    position: absolute;
+    inset: -20px;
+    border: 1px solid rgba(184,146,42,0.2);
+    border-radius: 50%;
+  }
+  .photo-frame img {
+    width: 280px;
+    height: 280px;
+    object-fit: cover;
+    object-position: center 40%;
+    border-radius: 50%;
+    display: block;
+    border: 3px solid rgba(184,146,42,0.4);
+  }
+
+  .about-left-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .photo-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    padding-left: 1rem;
+    border-left: 2px solid rgba(200,130,30,0.35);
+  }
+
+  .about-bio--large {
+    font-size: 1.5rem !important;
+    line-height: 1.65 !important;
+    color: rgba(247,243,236,0.88) !important;
+  }
+
+  /* ─── ABOUT ─── */
+  .about { background: var(--slate); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 6rem;
+    align-items: center;
+  }
+
+  .about-bio {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.7;
+    color: rgba(245,242,236,0.8);
+    margin-bottom: 2rem;
+  }
+
+  .about-body {
+    font-size: 0.9rem;
+    line-height: 1.9;
+    color: var(--mist);
+    margin-bottom: 2.5rem;
+  }
+
+  .about-pillars {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .pillar {
+    border-left: 2px solid var(--gold);
+    padding: 1rem 1.5rem;
+    background: rgba(184,146,42,0.04);
+  }
+  .pillar-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+  }
+  .pillar-desc {
+    font-size: 0.82rem;
+    color: var(--mist);
+    line-height: 1.6;
+  }
+
+  /* Timeline / Experience */
+  .timeline-right { position: relative; }
+
+  .timeline-line {
+    position: absolute;
+    left: 0;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+  }
+
+  .timeline-item {
+    padding-left: 2.5rem;
+    margin-bottom: 2.5rem;
+    position: relative;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -4px;
+    top: 0.4rem;
+    width: 8px; height: 8px;
+    background: var(--gold);
+    border-radius: 50%;
+  }
+
+  .tl-year {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+  .tl-role {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--paper);
+    margin-bottom: 0.2rem;
+  }
+  .tl-company {
+    font-size: 0.82rem;
+    color: var(--mist);
+    margin-bottom: 0.6rem;
+  }
+  .tl-desc {
+    font-size: 0.82rem;
+    color: rgba(138,143,168,0.75);
+    line-height: 1.7;
+  }
+
+  /* ─── EXPERTISE ─── */
+  .expertise { background: var(--ink); }
+
+  .expertise-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin-top: 4rem;
+  }
+
+  .expertise-card {
+    background: var(--ink);
+    padding: 3rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.4s;
+  }
+  .expertise-card:hover { background: rgba(184,146,42,0.05); }
+  .expertise-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+  }
+  .expertise-card:hover::after { transform: scaleX(1); }
+
+  .exp-icon {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+
+  .exp-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--paper);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .exp-desc {
+    font-size: 0.85rem;
+    color: var(--mist);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+
+  .exp-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    font-weight: 300;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid rgba(184,146,42,0.3);
+    padding: 0.25rem 0.6rem;
+  }
+
+  /* ─── AI SHOWCASE ─── */
+  .ai-section { background: var(--slate); overflow: hidden; }
+
+  .ai-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .ai-projects {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .ai-project-card {
+    border: 1px solid rgba(184,146,42,0.15);
+    padding: 1.8rem 2rem;
+    position: relative;
+    transition: all 0.3s;
+    cursor: none;
+  }
+  .ai-project-card:hover {
+    border-color: rgba(184,146,42,0.5);
+    background: rgba(184,146,42,0.04);
+    transform: translateX(6px);
+  }
+
+  .proj-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+  .proj-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--paper);
+    margin-bottom: 0.5rem;
+  }
+  .proj-desc {
+    font-size: 0.82rem;
+    color: var(--mist);
+    line-height: 1.7;
+  }
+  .proj-arrow {
+    position: absolute;
+    right: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(184,146,42,0.3);
+    font-size: 1.2rem;
+    transition: all 0.3s;
+  }
+  .ai-project-card:hover .proj-arrow {
+    color: var(--gold);
+    right: 1rem;
+  }
+
+  /* AI right side */
+  .ai-visual {
+    position: relative;
+    height: 500px;
+  }
+
+  .ai-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(184,146,42,0.15);
+  }
+  .ai-ring-1 { width: 400px; height: 400px; top: 50px; left: 0; animation: rotate 25s linear infinite; }
+  .ai-ring-2 { width: 280px; height: 280px; top: 110px; left: 60px; animation: rotate 18s linear infinite reverse; }
+  .ai-ring-3 { width: 160px; height: 160px; top: 170px; left: 120px; animation: rotate 12s linear infinite; }
+
+  .ai-ring::before {
+    content: '';
+    position: absolute;
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    top: -3px; left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .ai-center {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 2;
+  }
+  .ai-center-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+  .ai-center-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    font-weight: 300;
+    color: var(--paper);
+    line-height: 1;
+  }
+
+  /* ─── INSIGHTS / THOUGHT LEADERSHIP ─── */
+  .insights { background: var(--ink); }
+
+  .insights-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 4rem;
+  }
+
+  .insight-card {
+    border-top: 1px solid var(--rule);
+    padding-top: 2rem;
+    transition: all 0.3s;
+    cursor: none;
+  }
+  .insight-card:hover .insight-title { color: var(--gold); }
+
+  .insight-cat {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .insight-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--paper);
+    line-height: 1.35;
+    margin-bottom: 1rem;
+    transition: color 0.3s;
+  }
+
+  .insight-excerpt {
+    font-size: 0.82rem;
+    color: var(--mist);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+
+  .insight-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    color: rgba(138,143,168,0.6);
+  }
+
+  /* ─── AWARDS ─── */
+  .awards { background: var(--slate); }
+
+  .awards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-top: 4rem;
+  }
+
+  .award-card {
+    background: rgba(10,10,15,0.5);
+    border: 1px solid rgba(184,146,42,0.18);
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+    transition: all 0.35s;
+  }
+  .award-card:hover {
+    border-color: rgba(184,146,42,0.5);
+    transform: translateY(-4px);
+  }
+
+  .award-year {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    font-weight: 300;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+  }
+
+  .award-icon {
+    font-size: 1.2rem;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    opacity: 0.7;
+  }
+
+  .award-body { display: flex; flex-direction: column; gap: 0.7rem; flex: 1; }
+
+  .award-org {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mist);
+  }
+
+  .award-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem;
+    font-weight: 400;
+    color: var(--paper);
+    line-height: 1.25;
+  }
+
+  .award-desc {
+    font-size: 0.82rem;
+    color: var(--mist);
+    line-height: 1.8;
+  }
+
+  .award-quote {
+    border-left: 2px solid rgba(184,146,42,0.4);
+    padding: 0.6rem 1rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.95rem;
+    font-style: italic;
+    color: rgba(245,242,236,0.7);
+    line-height: 1.6;
+    margin-top: 0.3rem;
+  }
+
+  @media (max-width: 900px) {
+    .awards-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ─── PRESS ─── */
+  .press { background: var(--ink); }
+
+  .press-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+  }
+
+  .press-card {
+    border: 1px solid rgba(184,146,42,0.18);
+    padding: 2.5rem;
+    position: relative;
+    transition: all 0.35s;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  .press-card:hover {
+    border-color: rgba(184,146,42,0.45);
+    background: rgba(184,146,42,0.03);
+  }
+
+  .press-logo-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+  .press-outlet {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    font-weight: 300;
+    letter-spacing: 0.12em;
+    color: rgba(138,143,168,0.6);
+    text-transform: uppercase;
+  }
+  .press-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    white-space: nowrap;
+  }
+
+  .press-flag {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink);
+    background: var(--gold);
+    padding: 0.25rem 0.75rem;
+    align-self: flex-start;
+  }
+
+  .press-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem;
+    font-weight: 400;
+    color: var(--paper);
+    line-height: 1.3;
+  }
+
+  .press-quote {
+    border-left: 2px solid var(--gold);
+    padding: 0.8rem 1.2rem;
+    background: rgba(184,146,42,0.04);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    font-weight: 300;
+    color: rgba(245,242,236,0.85);
+    line-height: 1.65;
+  }
+  .press-quote cite {
+    display: block;
+    font-style: normal;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    margin-top: 0.7rem;
+    text-transform: uppercase;
+  }
+
+  .press-body {
+    font-size: 0.84rem;
+    color: var(--mist);
+    line-height: 1.8;
+  }
+
+  .press-link {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(184,146,42,0.3);
+    padding-bottom: 0.2rem;
+    align-self: flex-start;
+    margin-top: auto;
+    transition: all 0.3s;
+  }
+  .press-link:hover {
+    color: var(--gold-light);
+    border-color: var(--gold-light);
+  }
+
+  /* Press stats bar */
+  .press-stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    border: 1px solid rgba(184,146,42,0.18);
+    padding: 2.5rem 0;
+  }
+
+  .pstat {
+    flex: 1;
+    text-align: center;
+    padding: 0 2rem;
+  }
+  .pstat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .pstat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    font-weight: 300;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mist);
+  }
+  .pstat-div {
+    width: 1px;
+    height: 60px;
+    background: rgba(184,146,42,0.2);
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 900px) {
+    .press-grid { grid-template-columns: 1fr; }
+    .press-stats { flex-wrap: wrap; gap: 2rem; padding: 2rem; }
+    .pstat-div { display: none; }
+  }
+
+  /* ─── CONTACT ─── */
+  .contact {
+    background: var(--slate);
+    text-align: center;
+    padding: 8rem 0;
+  }
+
+  .contact-inner {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0 3rem;
+  }
+
+  .contact-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 300;
+    color: var(--paper);
+    line-height: 1.1;
+    margin-bottom: 2rem;
+  }
+  .contact-title em { font-style: italic; color: var(--gold); }
+
+  .contact-sub {
+    font-size: 0.9rem;
+    color: var(--mist);
+    line-height: 1.8;
+    margin-bottom: 3rem;
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .contact-link {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--paper);
+    text-decoration: none;
+    padding: 1rem 2rem;
+    border: 1px solid rgba(184,146,42,0.3);
+    transition: all 0.3s;
+    cursor: none;
+  }
+  .contact-link:hover {
+    background: var(--gold);
+    color: var(--ink);
+    border-color: var(--gold);
+  }
+  .contact-link.primary {
+    background: var(--gold);
+    color: var(--ink);
+    border-color: var(--gold);
+  }
+  .contact-link.primary:hover {
+    background: var(--gold-light);
+    border-color: var(--gold-light);
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--ink);
+    border-top: 1px solid var(--rule);
+    padding: 2.5rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+  }
+  .footer-copy {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    color: rgba(138,143,168,0.5);
+  }
+
+  /* ─── DIVIDER ─── */
+  .rule-line {
+    width: 100%;
+    height: 1px;
+    background: var(--rule);
+    margin: 2rem 0;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+  @keyframes drawLine {
+    to { stroke-dashoffset: 0; }
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+  }
+
+  /* ─── SCROLL REVEAL ─── */
+  .reveal {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { padding: 7rem 2rem 4rem; justify-content: flex-start; }
+    .hero-right { display: none; }
+    .about-grid, .ai-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .expertise-grid { grid-template-columns: 1fr; }
+    .insights-grid { grid-template-columns: 1fr; }
+    .container { padding: 0 1.5rem; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+    .hero-stat-cards { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- ═══ NAV ═══ -->
+<nav>
+  <div class="nav-logo">Margaret King</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#expertise">Expertise</a></li>
+    <li><a href="#ai">AI &amp; Innovation</a></li>
+    <li><a href="#insights">Insights</a></li>
+    <li><a href="#awards">Awards</a></li>
+    <li><a href="#press">Press</a></li>
+    <li><a href="#contact">Connect</a></li>
+    <li><a href="https://www.linkedin.com/in/margaretking123/" target="_blank">LinkedIn ↗</a></li>
+  </ul>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-tag">// Senior Investment Leader · Fintech Executive · Venture Platform Builder</p>
+    <h1 class="hero-name">Margaret<br><em>King</em></h1>
+    <p class="hero-title">
+      20+ years building high-leverage ecosystems across global financial institutions,
+      fintech programs, and emerging technology markets, with deep roots in AI, blockchain, data platforms, and institutional finance.
+    </p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn-primary">Open to Opportunities</a>
+      <a href="#expertise" class="btn-ghost">View Expertise →</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hex-grid"></div>
+    <div class="chart-canvas">
+      <svg class="data-viz" viewBox="0 0 380 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Grid lines -->
+        <line x1="0" y1="200" x2="380" y2="200" stroke="rgba(184,146,42,0.12)" stroke-width="1"/>
+        <line x1="0" y1="150" x2="380" y2="150" stroke="rgba(184,146,42,0.08)" stroke-width="1"/>
+        <line x1="0" y1="100" x2="380" y2="100" stroke="rgba(184,146,42,0.08)" stroke-width="1"/>
+        <line x1="0" y1="50"  x2="380" y2="50"  stroke="rgba(184,146,42,0.08)" stroke-width="1"/>
+        <!-- Area fill -->
+        <path d="M0 200 L0 180 C40 170 60 160 100 140 S160 100 200 80 S280 50 340 40 L380 35 L380 200 Z"
+              fill="rgba(184,146,42,0.06)"/>
+        <!-- Main line -->
+        <path class="line-chart-path"
+              d="M0 180 C40 170 60 160 100 140 S160 100 200 80 S280 50 340 40 L380 35"
+              stroke="#b8922a" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <!-- Secondary line -->
+        <path class="line-chart-path-2"
+              d="M0 195 C30 190 70 180 110 165 S180 145 230 130 S310 110 380 105"
+              stroke="rgba(184,146,42,0.4)" stroke-width="1.5" fill="none" stroke-dasharray="4 4" stroke-linecap="round"/>
+        <!-- Data points -->
+        <circle cx="100" cy="140" r="4" fill="#b8922a" opacity="0.8"/>
+        <circle cx="200" cy="80"  r="4" fill="#b8922a" opacity="0.8"/>
+        <circle cx="340" cy="40"  r="5" fill="#b8922a"/>
+        <!-- Labels -->
+        <text x="338" y="32" font-family="DM Mono" font-size="9" fill="rgba(184,146,42,0.7)" text-anchor="middle">Peak</text>
+        <text x="6"   y="215" font-family="DM Mono" font-size="8" fill="rgba(138,143,168,0.5)">2018</text>
+        <text x="146" y="215" font-family="DM Mono" font-size="8" fill="rgba(138,143,168,0.5)">2021</text>
+        <text x="310" y="215" font-family="DM Mono" font-size="8" fill="rgba(138,143,168,0.5)">2024</text>
+        <!-- Label overlay -->
+        <text x="30" y="30" font-family="DM Mono" font-size="9" fill="rgba(184,146,42,0.5)" letter-spacing="2">FINTECH GROWTH INDEX</text>
+      </svg>
+    </div>
+
+    <div class="hero-stat-cards">
+      <div class="stat-card">
+        <div class="stat-number">20+</div>
+        <div class="stat-label">Years in Financial Services</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">40+</div>
+        <div class="stat-label">Portfolio Companies Managed</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">$100B+</div>
+        <div class="stat-label">AUM Growth Contributed</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ticker -->
+  <div class="ticker">
+    <div class="ticker-inner">
+      <span class="ticker-item">AI in FS Adoption <span class="up">↑ 340%</span></span>
+      <span class="ticker-item">GenAI Banking ROI <span class="up">+$340B</span></span>
+      <span class="ticker-item">Fraud Detection Accuracy <span class="up">↑ 94%</span></span>
+      <span class="ticker-item">WealthTech AUM <span class="up">$5.9T</span></span>
+      <span class="ticker-item">RegTech Compliance Costs <span class="down">↓ 30%</span></span>
+      <span class="ticker-item">Payments Volume 2024 <span class="up">$2.3T</span></span>
+      <!-- Duplicate for seamless loop -->
+      <span class="ticker-item">AI in FS Adoption <span class="up">↑ 340%</span></span>
+      <span class="ticker-item">GenAI Banking ROI <span class="up">+$340B</span></span>
+      <span class="ticker-item">Fraud Detection Accuracy <span class="up">↑ 94%</span></span>
+      <span class="ticker-item">WealthTech AUM <span class="up">$5.9T</span></span>
+      <span class="ticker-item">RegTech Compliance Costs <span class="down">↓ 30%</span></span>
+      <span class="ticker-item">Payments Volume 2024 <span class="up">$2.3T</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ABOUT ═══ -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="reveal">
+        <p class="section-label">// 01 — About</p>
+        <h2 class="section-title">Where institutional<br>depth meets <em>venture velocity</em></h2>
+        <p class="about-bio about-bio--large">
+          "The biggest challenge is rarely the technology itself — it's aligning incentives across institutions, founders, and regulators while ensuring systems are secure and operationally viable."
+        </p>
+        <p class="about-body">
+          My work has largely focused on bridging two ecosystems that historically move at very different speeds: early-stage emerging technology innovation and large financial institutions. I spent much of my career inside asset management organizations where the priority is protecting client assets and operating within highly regulated environments. At the same time, I have worked closely with founders and venture investors building the next generation of financial infrastructure.
+        </p>
+        <p class="about-body">
+          Recognizing the gap between those worlds, I helped build a venture and partnership platform designed to evaluate emerging technologies while connecting founders with large institutional partners. The goal was not simply investing in companies, but helping institutions responsibly adopt innovation across areas like fintech infrastructure, data platforms, blockchain, and AI-driven financial tools.
+        </p>
+        <p class="about-body">
+          That experience gave me a unique perspective on how innovation actually scales in financial services. Today I continue to focus on identifying technologies that can reshape financial infrastructure, particularly where AI, data platforms, and institutional workflows intersect.
+        </p>
+        <div class="about-pillars">
+          <div class="pillar">
+            <div class="pillar-title">Venture &amp; Partnerships</div>
+            <div class="pillar-desc">Evaluating emerging technology and connecting founders with institutional capital, distribution, and operational credibility</div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-title">Asset Management</div>
+            <div class="pillar-desc">Deep experience inside regulated AM organizations focused on client asset protection, product strategy, and compliance</div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-title">Institutional Innovation</div>
+            <div class="pillar-desc">Helping large institutions responsibly adopt fintech infrastructure and AI-driven financial tools</div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-title">AI &amp; Data Strategy</div>
+            <div class="pillar-desc">Identifying where AI and data platforms intersect with institutional workflows to create durable, scalable advantage</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-right reveal" style="transition-delay: 0.2s">
+        <div class="timeline-line"></div>
+        <div class="timeline-item">
+          <div class="tl-year">2019 — Present</div>
+          <div class="tl-role">Venture &amp; Partnership Platform</div>
+          <div class="tl-company">Global Asset Manager · Innovation Lab</div>
+          <div class="tl-desc">Founded and led a cross-ecosystem venture studio advancing AI-driven financial infrastructure. Managed a global portfolio of 40+ companies across AI, blockchain, and fintech. Built agentic intelligence applications for private market research and family office wealth platforms. Launched innovation hubs in Silicon Valley and Singapore.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="tl-year">2012 — 2018</div>
+          <div class="tl-role">Global Product Strategy &amp; Institutional Partnerships</div>
+          <div class="tl-company">Global Asset Manager</div>
+          <div class="tl-desc">Led product strategy and institutional partnerships across a large-scale asset management platform. Directed lifecycle management for 350+ mutual funds and 57 ETFs, contributing to $100B+ in AUM growth. Built institutional partnerships across emerging markets generating $50B in net inflows.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="tl-year">2005 — 2011</div>
+          <div class="tl-role">Corporate Strategy &amp; M&amp;A</div>
+          <div class="tl-company">Global Asset Manager</div>
+          <div class="tl-desc">Co-led 15 global M&amp;A transactions across North America, Europe, Asia, and South America. Built multi-year corporate strategy frameworks identifying structural shifts in digital transformation, passive investing, and alternative assets.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="tl-year">2002 — 2005</div>
+          <div class="tl-role">Finance &amp; Operations</div>
+          <div class="tl-company">Global Payments Technology Company</div>
+          <div class="tl-desc">Early career role supporting product and engineering organization during rapid scaling. Designed and implemented SOX-compliant financial controls. Managed budgeting and operational planning for engineering, product, and risk teams.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ EXPERTISE ═══ -->
+<section class="expertise" id="expertise">
+  <div class="container">
+    <p class="section-label reveal">// 02 — Core Expertise</p>
+    <h2 class="section-title reveal">Three areas.<br><em>One focus.</em></h2>
+    <div class="expertise-grid">
+      <div class="expertise-card reveal">
+        <span class="exp-icon">⬡</span>
+        <h3 class="exp-title">AI &amp; Data Platform Strategy</h3>
+        <p class="exp-desc">
+          Translating frontier AI, APIs, blockchain, and analytics into real-world adoption inside regulated institutions. Work spans agentic intelligence applications, open-data ecosystem design, and model risk governance.
+        </p>
+        <div class="exp-tags">
+          <span class="tag">Agentic AI</span>
+          <span class="tag">Data Platforms</span>
+          <span class="tag">Model Risk</span>
+          <span class="tag">AI Governance</span>
+          <span class="tag">Blockchain</span>
+          <span class="tag">Open Data</span>
+        </div>
+      </div>
+
+      <div class="expertise-card reveal" style="transition-delay: 0.15s">
+        <span class="exp-icon">◈</span>
+        <h3 class="exp-title">Venture &amp; Institutional Partnerships</h3>
+        <p class="exp-desc">
+          End-to-end investment strategy, technical validation, and commercial structuring. Connecting early-stage founders with institutional partners across fintech infrastructure, capital markets, and regulated financial systems.
+        </p>
+        <div class="exp-tags">
+          <span class="tag">Corporate Venture</span>
+          <span class="tag">Due Diligence</span>
+          <span class="tag">Co-Investment</span>
+          <span class="tag">GTM Alignment</span>
+          <span class="tag">Board Advisory</span>
+        </div>
+      </div>
+
+      <div class="expertise-card reveal" style="transition-delay: 0.3s">
+        <span class="exp-icon">◇</span>
+        <h3 class="exp-title">Asset Management &amp; Product Strategy</h3>
+        <p class="exp-desc">
+          Deep institutional experience across 350+ mutual funds, 57 ETFs, and $100B+ AUM growth. Expertise spans product lifecycle, institutional distribution, emerging market partnerships, and M&amp;A integration.
+        </p>
+        <div class="exp-tags">
+          <span class="tag">Asset Management</span>
+          <span class="tag">ETFs &amp; Mutual Funds</span>
+          <span class="tag">M&amp;A</span>
+          <span class="tag">Distribution</span>
+          <span class="tag">Emerging Markets</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ AI SHOWCASE ═══ -->
+<section class="ai-section" id="ai">
+  <div class="container">
+    <div class="ai-grid">
+      <div class="reveal">
+        <p class="section-label">// 03 — AI &amp; Innovation</p>
+        <h2 class="section-title">Applied AI<br><em>in practice</em></h2>
+        <p class="about-body" style="margin-bottom: 2.5rem">
+          Selected initiatives from my work building a venture and partnership platform inside a global asset manager, showing how frontier technologies move from early evaluation to real adoption inside a regulated enterprise.
+        </p>
+
+        <div class="ai-projects">
+          <div class="ai-project-card">
+            <div class="proj-label">// Agentic AI · Private Markets</div>
+            <div class="proj-title">Agentic Intelligence for Private Market Research &amp; Family Office Wealth</div>
+            <div class="proj-desc">Built agentic AI applications in collaboration with startup engineering, security, legal, and compliance teams. Evaluation covered data governance, model risk, interoperability, and regulatory readiness for production deployment.</div>
+            <div class="proj-arrow">→</div>
+          </div>
+
+          <div class="ai-project-card">
+            <div class="proj-label">// Venture Portfolio · 40+ Companies</div>
+            <div class="proj-title">Global Fintech &amp; AI Venture Portfolio</div>
+            <div class="proj-desc">Managed a global portfolio across AI, blockchain, and fintech. Served as board member, observer, and advisor on go-to-market strategy, enterprise integrations, pricing, and compliance readiness across multiple asset classes.</div>
+            <div class="proj-arrow">→</div>
+          </div>
+
+          <div class="ai-project-card">
+            <div class="proj-label">// Innovation Infrastructure · Global</div>
+            <div class="proj-title">Silicon Valley &amp; Singapore Innovation Hubs</div>
+            <div class="proj-desc">Launched international innovation hubs with operating models for cross-border technology deployment and partnership governance. Connected global founders with institutional distribution and capital.</div>
+            <div class="proj-arrow">→</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ai-visual reveal" style="transition-delay: 0.3s">
+        <div class="ai-ring ai-ring-1"></div>
+        <div class="ai-ring ai-ring-2"></div>
+        <div class="ai-ring ai-ring-3"></div>
+        <div class="ai-center">
+          <div class="ai-center-label">AI Confidence</div>
+          <div class="ai-center-value">94.7%</div>
+          <div class="ai-center-label" style="margin-top:0.3rem">Fraud Detection Rate</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ INSIGHTS ═══ -->
+<section class="insights" id="insights">
+  <div class="container">
+    <p class="section-label reveal">// 04 — Thought Leadership</p>
+    <h2 class="section-title reveal">Writing on<br><em>what matters now</em></h2>
+    <div class="insights-grid">
+      <div class="insight-card reveal">
+        <div class="insight-cat">Institutional Innovation</div>
+        <h3 class="insight-title">Why the Gap Between Venture Speed and Institutional Caution Is a Feature, Not a Bug</h3>
+        <p class="insight-excerpt">The tension between how fast founders move and how carefully institutions must operate isn't a problem to eliminate — it's a dynamic to navigate with the right bridge-building infrastructure.</p>
+        <div class="insight-meta">7 min read &nbsp;·&nbsp; 2025</div>
+      </div>
+
+      <div class="insight-card reveal" style="transition-delay: 0.15s">
+        <div class="insight-cat">AI × Asset Management</div>
+        <h3 class="insight-title">The Three Questions Every Asset Manager Should Ask Before Adopting an AI Tool</h3>
+        <p class="insight-excerpt">The technology is rarely the hard part. Operational viability, incentive alignment, and regulatory posture are what separate successful AI adoption from expensive pilots that go nowhere.</p>
+        <div class="insight-meta">6 min read &nbsp;·&nbsp; 2025</div>
+      </div>
+
+      <div class="insight-card reveal" style="transition-delay: 0.3s">
+        <div class="insight-cat">Fintech Infrastructure</div>
+        <h3 class="insight-title">Data Platforms Are the Real AI Story in Financial Services</h3>
+        <p class="insight-excerpt">Everyone is talking about AI models. The more durable, and underappreciated, opportunity is in the data infrastructure layer that determines whether those models ever deliver real institutional value.</p>
+        <div class="insight-meta">8 min read &nbsp;·&nbsp; 2024</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ AWARDS ═══ -->
+<section class="awards" id="awards">
+  <div class="container">
+    <p class="section-label reveal">// 05 — Awards &amp; Recognition</p>
+    <h2 class="section-title reveal">Recognized for<br><em>impact &amp; leadership</em></h2>
+
+    <div class="awards-grid">
+
+      <div class="award-card reveal">
+        <div class="award-year">2024</div>
+        <div class="award-icon">◆</div>
+        <div class="award-body">
+          <div class="award-org">Junior Achievement of Northern California</div>
+          <h3 class="award-title">2024 Volunteer of the Year</h3>
+          <p class="award-desc">Honored at the JA Virtual Hall of Fame for inspiring and preparing young people to succeed in a global economy, providing financial literacy and entrepreneurship education to students across Northern California.</p>
+          <blockquote class="award-quote">
+            "I'm excited to be involved with Junior Achievement because it provides an opportunity to educate and inspire the next generation of financial and technology leaders."
+          </blockquote>
+          <a href="https://finance.yahoo.com/news/franklin-templetons-margaret-king-recognized-141500301.html" target="_blank" class="press-link">Read Announcement →</a>
+        </div>
+      </div>
+
+      <div class="award-card reveal" style="transition-delay: 0.15s">
+        <div class="award-year">2023</div>
+        <div class="award-icon">◆</div>
+        <div class="award-body">
+          <div class="award-org">San Francisco Business Journal</div>
+          <h3 class="award-title">Most Influential Women in the Bay Area</h3>
+          <p class="award-desc">Named to the SF Business Journal's 2023 list of Most Influential Women in the Bay Area, recognizing her professional achievements and community leadership across fintech and institutional finance.</p>
+          <a href="https://www.bizjournals.com/sanfrancisco/news/2023/10/05/influential-women-margaret-king-franklin-templeton.html" target="_blank" class="press-link">Read Feature →</a>
+        </div>
+      </div>
+
+      <div class="award-card reveal" style="transition-delay: 0.3s">
+        <div class="award-year">2022</div>
+        <div class="award-icon">◆</div>
+        <div class="award-body">
+          <div class="award-org">Singapore FinTech Festival · IFF 2022</div>
+          <h3 class="award-title">Featured Speaker &amp; Innovation Leader</h3>
+          <p class="award-desc">Represented Franklin Templeton at the Singapore FinTech Festival Innovation Forum 2022 as a featured panelist on venture and institutional partnerships, AI-driven financial infrastructure, and the future of open financial ecosystems across Asia Pacific.</p>
+          <a href="https://www.linkedin.com/posts/franklin-templeton_iff2022-activity-7009235395959758849-jGmm/" target="_blank" class="press-link">View on LinkedIn →</a>
+        </div>
+      </div>
+
+      <div class="award-card reveal" style="transition-delay: 0.45s">
+        <div class="award-year">2022</div>
+        <div class="award-icon">◆</div>
+        <div class="award-body">
+          <div class="award-org">NYC Fintech Women</div>
+          <h3 class="award-title">2022 Inspiring FinTech Female — Leaders Category</h3>
+          <p class="award-desc">Named to NYC Fintech Women's annual Inspiring FinTech Females list, recognizing women transforming fintech and advocating for gender equity. Selected in the Leaders category for her work connecting founders with institutional capital and distribution, and for championing women in financial technology.</p>
+          <blockquote class="award-quote">
+            "Entrepreneurs create change by paving the way to new ideas, and taking the risk of thinking about entire ecosystems and industries very differently."
+          </blockquote>
+          <a href="https://www.nycfintechwomen.com/2022-inspiring-fintech-females" target="_blank" class="press-link">View Recognition →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PRESS ═══ -->
+<section class="press" id="press">
+  <div class="container">
+    <p class="section-label reveal">// 06 — In the Press</p>
+    <h2 class="section-title reveal">Building innovation<br><em>at global scale</em></h2>
+
+    <div class="press-grid">
+
+      <div class="press-card reveal">
+        <div class="press-logo-row">
+          <span class="press-outlet">PRNewswire &nbsp;·&nbsp; Crowdfund Insider &nbsp;·&nbsp; FinTech Times</span>
+          <span class="press-date">June 2022</span>
+        </div>
+        <div class="press-flag">Singapore</div>
+        <h3 class="press-title">Franklin Templeton Opens First Asian FinTech Incubator in Singapore</h3>
+        <blockquote class="press-quote">
+          "Singapore's role as the leading fundraising and innovation center for Asia Pacific startups has been growing. We seek to support creative startups across the region to catalyze innovative solutions in blockchain, alternative data, wealth management and green tech."
+          <cite>— Margaret King, VP, FinTech Partnerships &amp; Corporate Strategic Investments</cite>
+        </blockquote>
+        <p class="press-body">
+          Launched in partnership with F10 Global Innovation Network at Singapore's 80RR FinTech Hub, the incubator provides early-stage startups with seed funding, two years of residency, and access to Franklin Templeton's institutional expertise, building on the success of the Silicon Valley program.
+        </p>
+        <div class="press-tags">
+          <span class="tag">Singapore</span>
+          <span class="tag">Asia Pacific</span>
+          <span class="tag">F10 Partnership</span>
+          <span class="tag">Seed Funding</span>
+        </div>
+        <a href="https://www.crowdfundinsider.com/2022/07/192896-franklin-templeton-selects-first-startup-to-join-inaugural-singapore-fintech-incubator/" target="_blank" class="press-link">Read Coverage →</a>
+      </div>
+
+      <div class="press-card reveal" style="transition-delay: 0.2s">
+        <div class="press-logo-row">
+          <span class="press-outlet">BusinessWire &nbsp;·&nbsp; Nasdaq &nbsp;·&nbsp; EvoNexus</span>
+          <span class="press-date">2019 — 2022</span>
+        </div>
+        <div class="press-flag">Silicon Valley</div>
+        <h3 class="press-title">Franklin Templeton &amp; EvoNexus Create Silicon Valley's Newest FinTech Incubator</h3>
+        <blockquote class="press-quote">
+          "Startups benefit from Franklin Templeton's expertise in running and scaling a global asset management business. We also learn from them, gaining insight into new methods and approaches to the market."
+          <cite>— Franklin Templeton Leadership on the Incubator Program</cite>
+        </blockquote>
+        <p class="press-body">
+          A 13,000 sq ft facility on the Franklin Templeton San Mateo campus, the non-profit incubator offered $150,000 in SAFE seed funding per startup. By 2022, 40+ fintech startups had engaged directly with Franklin Templeton and RBC experts, with portfolio companies raising $530M+ and achieving $1B in exits.
+        </p>
+        <div class="press-tags">
+          <span class="tag">San Mateo</span>
+          <span class="tag">EvoNexus</span>
+          <span class="tag">RBC Partnership</span>
+          <span class="tag">AI &amp; Blockchain</span>
+          <span class="tag">$150K Seed</span>
+        </div>
+        <a href="https://evonexus.org/news/evonexus-news/evonexus-royal-bank-of-canada-and-franklin-templeton-collaborate-on-silicon-valley-fintech-incubator-in-call-for-new-early-stage-start-up-applicants/" target="_blank" class="press-link">Read Coverage →</a>
+      </div>
+
+    </div>
+
+    <!-- Pull stat bar -->
+    <div class="press-stats reveal">
+      <div class="pstat">
+        <div class="pstat-num">40+</div>
+        <div class="pstat-label">Fintech Startups Supported</div>
+      </div>
+      <div class="pstat-div"></div>
+      <div class="pstat">
+        <div class="pstat-num">$530M+</div>
+        <div class="pstat-label">Portfolio Company Fundraising</div>
+      </div>
+      <div class="pstat-div"></div>
+      <div class="pstat">
+        <div class="pstat-num">2</div>
+        <div class="pstat-label">Global Innovation Hubs Launched</div>
+      </div>
+      <div class="pstat-div"></div>
+      <div class="pstat">
+        <div class="pstat-num">$1B</div>
+        <div class="pstat-label">Exit Value Achieved by Portfolio</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <p class="section-label reveal" style="text-align:center">// 07 — Let's Connect</p>
+    <h2 class="contact-title reveal">
+      Let's build the<br><em>bridge together</em>
+    </h2>
+    <p class="contact-sub reveal">
+      Open to board advisory roles, executive opportunities, and strategic partnerships at the intersection of AI-driven financial infrastructure and institutional adoption. Particularly interested in organizations at the stage where venture-backed innovation meets institutional scale, and where getting governance and operations right is the work.
+    </p>
+    <div class="contact-links reveal">
+      <a href="/cdn-cgi/l/email-protection#127f797b7c753c71737c7d626b527d67667e7d7d793c717d7f" class="contact-link primary">Send a Message</a>
+      <a href="https://www.linkedin.com/in/margaretking123/" class="contact-link" target="_blank">LinkedIn Profile</a>
+      <a href="#insights" class="contact-link">Read My Writing</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-brand">Margaret King</div>
+  <div style="display:flex;gap:2rem;align-items:center;">
+    <a href="/cdn-cgi/l/email-protection#ea878183848dc4898b84859a93aa859f9e86858581c4898587" style="font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;color:var(--mist);text-decoration:none;text-transform:uppercase;"><span class="__cf_email__" data-cfemail="7b161012151c55181a15140b023b140e0f1714141055181416">[email&#160;protected]</span></a>
+    <a href="https://www.linkedin.com/in/margaretking123/" target="_blank" style="font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;color:var(--gold);text-decoration:none;text-transform:uppercase;">LinkedIn ↗</a>
+  </div>
+  <div class="footer-copy">© 2025 · Fintech Executive · Venture–Institutional Bridge Builder · All rights reserved</div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring   = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px';
+    cursor.style.top  = my + 'px';
+  });
+
+  function animateRing() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top  = ry + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  document.querySelectorAll('a, button, .ai-project-card, .expertise-card').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.transform = 'translate(-50%,-50%) scale(2.5)';
+      ring.style.width  = '50px';
+      ring.sty
